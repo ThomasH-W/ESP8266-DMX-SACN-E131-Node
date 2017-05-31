@@ -1,5 +1,8 @@
 ## ArtNet Node based on ESP8266  ##
 
+http://www.hoeser-medien.de/2017/03/esp8266-dmx-modul-mit-web-server/
+http://doityourselfchristmas.com/forums/showthread.php?45000-How-to-abuse-Vixen 
+
 Die erste Verson basierte auf einem arduino mit dem Funkmodul nrf24L01.
 Vorteil ist ein geringer Stromverbrauch sowie eine properitäre Funkverbindung, die nicht so leicht geknackt werden kann.
 Für die Show werden 20 Module gebraucht. Der Aufwand für die Verdrahtung für das Funkmodul war mir einfach zu hoch.
