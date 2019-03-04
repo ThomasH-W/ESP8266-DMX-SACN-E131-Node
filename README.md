@@ -1,18 +1,22 @@
-## ArtNet Node based on ESP8266  ##
+## SACN / E1.31/ DMX Node based on ESP8266  ##
+
+Update Mar-2019:
+This project was developed using eclipse. Unfortunately it is generating a lot of errors under VS Code.
+There is new repository for VS Code: https://github.com/ThomasH-W/E131-DMX-Module
 
 http://www.hoeser-medien.de/2017/03/esp8266-dmx-modul-mit-web-server/
 http://doityourselfchristmas.com/forums/showthread.php?45000-How-to-abuse-Vixen 
 
 Die erste Verson basierte auf einem arduino mit dem Funkmodul nrf24L01.
-Vorteil ist ein geringer Stromverbrauch sowie eine properitäre Funkverbindung, die nicht so leicht geknackt werden kann.
-Für die Show werden 20 Module gebraucht. Der Aufwand für die Verdrahtung für das Funkmodul war mir einfach zu hoch.
+Vorteil ist ein geringer Stromverbrauch sowie eine properitÃ¤re Funkverbindung, die nicht so leicht geknackt werden kann.
+FÃ¼r die Show werden 20 Module gebraucht. Der Aufwand fÃ¼r die Verdrahtung fÃ¼r das Funkmodul war mir einfach zu hoch.
 
-Der folgende Ansatz basiert nun auf dem ESP8266. Die Hardware ist nun wesentlich schneller aufgebaut, da ich nur noch die Treiberstufe für die LED-Stripes hinzufügen muss. Das Modul hat nun einen Web-Server und sämtliche Einstellungen können hierüber vorgenommen werden. Weiterhin lässt sich die Firmware einfach über OTA (Over The Air) aktualisieren. Weiterhin schicken die Module Nachrichten an einen Node-Server. Über diesen Server kann man sehen, ob die Module alle Daten empfangen. Für mich sehr beruhigend, da unmittelbar vor der Show eine gewisse Hektik ausbricht und man keine Zeit alle 20 Module zu prüfen.
+Der folgende Ansatz basiert nun auf dem ESP8266. Die Hardware ist nun wesentlich schneller aufgebaut, da ich nur noch die Treiberstufe fÃ¼r die LED-Stripes hinzufÃ¼gen muss. Das Modul hat nun einen Web-Server und sÃ¤mtliche Einstellungen kÃ¶nnen hierÃ¼ber vorgenommen werden. Weiterhin lÃ¤sst sich die Firmware einfach Ã¼ber OTA (Over The Air) aktualisieren. Weiterhin schicken die Module Nachrichten an einen Node-Server. Ãœber diesen Server kann man sehen, ob die Module alle Daten empfangen. FÃ¼r mich sehr beruhigend, da unmittelbar vor der Show eine gewisse Hektik ausbricht und man keine Zeit alle 20 Module zu prÃ¼fen.
 
 
 
 Node Server
-Für den Node Server gibt es Web-Interface, um den Status zu kontrollieren.
+FÃ¼r den Node Server gibt es Web-Interface, um den Status zu kontrollieren.
 
 
 
@@ -23,37 +27,37 @@ Das Web-Interface basiert auf dieser Vorlage http://www.john-lassen.de/en/projec
 
 DMX Settings
 
-Die Module sind alle identisch aufgebaut – also keine Schalter oder DIP-Switches um eine Kodierung vorzunehmen.
-Hier kann man die Rolle des Moduls bestimmen bzw. welche DMX-Kanäle verwendet werden.
+Die Module sind alle identisch aufgebaut â€“ also keine Schalter oder DIP-Switches um eine Kodierung vorzunehmen.
+Hier kann man die Rolle des Moduls bestimmen bzw. welche DMX-KanÃ¤le verwendet werden.
 
 
 
-Der DMX Kanal wird nicht direkt bestimmt, sondern man wählt hier z.B. den Fahrer aus.
-Das Modul ermittelt dann selber den Kanal und generiert eine Namen für das Modul.
+Der DMX Kanal wird nicht direkt bestimmt, sondern man wÃ¤hlt hier z.B. den Fahrer aus.
+Das Modul ermittelt dann selber den Kanal und generiert eine Namen fÃ¼r das Modul.
 Dieser Name ist nachher auf dem node-Server und WLAN-Router sichtbar.
 
 
 
 Gamma-Korrektur
 
-Über die Gamma-Korrektur lässt sich die Helligkeit reduzieren.
+Ãœber die Gamma-Korrektur lÃ¤sst sich die Helligkeit reduzieren.
 
 DMX output
 
-Das DMX-Paket wird dann über  Serial1 ausgegeben. Somit kann man beliebige Geräte mit DMX-Eingang anbinden.
+Das DMX-Paket wird dann Ã¼ber  Serial1 ausgegeben. Somit kann man beliebige GerÃ¤te mit DMX-Eingang anbinden.
 
 LED Pin
 
 Ich habe mit mehreren Modulen experimentiert (NodeLUA, ESP12E) und unterschiedlichen Layouts.
-Hier kann man die Zuordnung der LED Treiber zum PWM Pin auswählen, so dass das Layout flexibel ist.
+Hier kann man die Zuordnung der LED Treiber zum PWM Pin auswÃ¤hlen, so dass das Layout flexibel ist.
 
 
 
 DMX-Sender
 
-Backstage oder bei Proben, möchte ich in der Lage sein die Module zu testen.
+Backstage oder bei Proben, mÃ¶chte ich in der Lage sein die Module zu testen.
 Jedes Modul kann eine Testsequenz per Multicast schicken.
-Somit kann ich z.B. einen Fahrer auswählen und sehen, ob dessen drei Module aktiv sind.
+Somit kann ich z.B. einen Fahrer auswÃ¤hlen und sehen, ob dessen drei Module aktiv sind.
 
 
 
@@ -61,15 +65,15 @@ Somit kann ich z.B. einen Fahrer auswählen und sehen, ob dessen drei Module akti
 
 Hardware
 
-Grundsätzlich verwende ich ein NodeLua-Modul, welches auf dem ESP12E basiert.
+GrundsÃ¤tzlich verwende ich ein NodeLua-Modul, welches auf dem ESP12E basiert.
 
-Die erste Programmierung kann über USB erfolgen
+Die erste Programmierung kann Ã¼ber USB erfolgen
 Ein Spannungsregler ist bereits integriert
-Achtung: es gibt Module, die für Vin nur 5V statt 12V haben
-Die Treiberstufe befindet sich auf einer Platine, die auf der Unterseite verlötet wird.
+Achtung: es gibt Module, die fÃ¼r Vin nur 5V statt 12V haben
+Die Treiberstufe befindet sich auf einer Platine, die auf der Unterseite verlÃ¶tet wird.
 Damit ist das Modul kompakt und schnell aufgebaut.
 
-Als Treiber verwende ich den IRLR7843 mit der Bauform D-PAK. Diese SMD Bauform ist klein (aber nicht zu klein) und lässt sich gut auf eine Lochrasterplatine verlöten.
+Als Treiber verwende ich den IRLR7843 mit der Bauform D-PAK. Diese SMD Bauform ist klein (aber nicht zu klein) und lÃ¤sst sich gut auf eine Lochrasterplatine verlÃ¶ten.
 Wichtig sind der R DS (on) von 3.3m Ohm und V GS (th) von 1,5-2,3V, da der ESP mit 3,3V arbeitet.
 
  
